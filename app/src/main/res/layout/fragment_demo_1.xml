@@ -49,6 +49,7 @@
         app:ssb_max="500"
         app:ssb_min="100.0"
         app:ssb_progress="200.0"
+        app:ssb_show_sign="true"
         app:ssb_second_track_color="@color/color_blue"
         app:ssb_track_size="4dp"/>
 

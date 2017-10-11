@@ -208,7 +208,7 @@ public class SignSeekBar extends View {
 
         int labelsResId = a.getResourceId(R.styleable.SignSeekBar_ssb_sides_labels, 0);
         mThumbBgAlpha = a.getFloat(R.styleable.SignSeekBar_ssb_thumb_bg_alpha, 0.2f);
-        mThumbRatio = a.getFloat(R.styleable.SignSeekBar_ssb_thumb_ratio, 1.3f);
+        mThumbRatio = a.getFloat(R.styleable.SignSeekBar_ssb_thumb_ratio, 0.7f);
         isShowThumbShadow = a.getBoolean(R.styleable.SignSeekBar_ssb_show_thumb_shadow, false);
         isShowSign = a.getBoolean(R.styleable.SignSeekBar_ssb_show_sign, false);
         isSignArrowAutofloat = a.getBoolean(R.styleable.SignSeekBar_ssb_sign_arrow_autofloat, true);
@@ -490,7 +490,7 @@ public class SignSeekBar extends View {
         mPaint.setColor(mThumbColor);
         //draw thumb shadow
         if (isShowThumbShadow) {
-            canvas.drawCircle(mThumbCenterX, yTop, isThumbOnDragging ? mThumbRadiusOnDragging / mThumbRatio : mThumbRadius / mThumbRatio, mPaint);
+            canvas.drawCircle(mThumbCenterX, yTop, isThumbOnDragging ? mThumbRadiusOnDragging * mThumbRatio : mThumbRadius * mThumbRatio, mPaint);
             mPaint.setColor(getColorWithAlpha(mThumbColor, mThumbBgAlpha));
         }
         //Paint paint = new Paint();

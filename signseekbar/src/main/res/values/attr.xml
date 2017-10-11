@@ -44,13 +44,13 @@
         <attr name="ssb_text_space" format="dimension|reference"/><!--default:2dp-->
         <attr name="ssb_sides_labels" format="reference"/><!--default:null-->
         <attr name="ssb_thumb_bg_alpha" format="float|reference"/> <!--0.0f-1.0f, default: 0.2f-->
-        <attr name="ssb_thumb_ratio" format="float|reference"/> <!--0.0f-1.0f, default: 1.3f-->
-        <attr name="ssb_show_thumb_shadow" format="boolean"/> <!--0.0f-1.0f, default: 0.2f-->
+        <attr name="ssb_thumb_ratio" format="float|reference"/> <!--0.0f-1.0f, default: 0.7f-->
+        <attr name="ssb_show_thumb_shadow" format="boolean"/> <!--0.0f-1.0f, default: false-->
         <attr name="ssb_sign_arrow_autofloat" format="boolean"/> <!--sign arrow auto float, default: true-->
-        <attr name="ssb_sign_height" format="dimension|reference"/> <!--sign height-->
-        <attr name="ssb_sign_width" format="dimension|reference"/> <!--sign_width-->
-        <attr name="ssb_sign_arrow_height" format="dimension|reference"/> <!--sign arrow height default:3dp-->
-        <attr name="ssb_sign_arrow_width" format="dimension|reference"/> <!--sign arrow width default:5dp-->
-        <attr name="ssb_sign_round" format="dimension|reference"/> <!--sign round default:5dp-->
+        <attr name="ssb_sign_height" format="dimension|reference"/> <!--sign height,default:22dp-->
+        <attr name="ssb_sign_width" format="dimension|reference"/> <!--sign_width ,default:72dp-->
+        <attr name="ssb_sign_arrow_height" format="dimension|reference"/> <!--sign arrow height ,default:3dp-->
+        <attr name="ssb_sign_arrow_width" format="dimension|reference"/> <!--sign arrow width, default:5dp-->
+        <attr name="ssb_sign_round" format="dimension|reference"/> <!--sign round, default:3dp-->
     </declare-styleable>
 </resources>
