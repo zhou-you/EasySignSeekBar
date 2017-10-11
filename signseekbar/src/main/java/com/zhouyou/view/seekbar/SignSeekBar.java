@@ -52,7 +52,7 @@ import static com.zhouyou.view.seekbar.SignSeekBar.TextPosition.BOTTOM_SIDES;
 import static com.zhouyou.view.seekbar.SignSeekBar.TextPosition.SIDES;
 
 /**
- * <p>描述：一个漂亮而强大的Android自定义SeekBar，它有一个带有进度的提示视图。</p>
+ * <p>描述：一个漂亮而强大的Android自定义SeekBar，它有一个带有进度的提示牌 sign:指示牌。</p>
  * 作者： zhouyou<br>
  * 日期： 2017/10/10 15:55 <br>
  * 版本： v1.0<br>
