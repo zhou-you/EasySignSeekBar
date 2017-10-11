@@ -43,7 +43,8 @@
                 app:ssb_progress="5"
                 app:ssb_second_track_color="@color/color_blue"
                 app:ssb_track_color="@color/colorPrimary"
-                app:ssb_track_size="4dp"/>
+                app:ssb_track_size="4dp"
+                app:ssb_show_sign="true"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -52,7 +53,8 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="16dp"
                 android:text="not correct"
-                android:textSize="12sp"/>
+                android:textSize="12sp"
+                />
 
             <com.zhouyou.view.seekbar.SignSeekBar
                 android:layout_width="match_parent"
@@ -62,7 +64,8 @@
                 app:ssb_progress="5"
                 app:ssb_second_track_color="@color/color_blue"
                 app:ssb_track_color="@color/colorPrimary"
-                app:ssb_track_size="4dp"/>
+                app:ssb_track_size="4dp"
+                app:ssb_show_sign="true"/>
 
         </LinearLayout>
     </com.zhouyou.samlpe.signseekbar.ObservableScrollView>

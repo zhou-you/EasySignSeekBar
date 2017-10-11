@@ -23,38 +23,12 @@ public class DemoFragment5 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_demo_5, container, false);
-        test1(view);
         test2(view);
         test3(view);
         test4(view);
         test5(view);
         test6(view);
         return view;
-    }
-
-    private void test1(View view) {
-        SignSeekBar signSeekBar = (SignSeekBar) view.findViewById(R.id.demo_5_seek_bar_1);
-        signSeekBar.getConfigBuilder()
-                .min(0)
-                .max(4)
-                .progress(2)
-                .sectionCount(4)
-                .trackColor(ContextCompat.getColor(getContext(), R.color.color_gray))
-                .secondTrackColor(ContextCompat.getColor(getContext(), R.color.color_blue))
-                .thumbColor(ContextCompat.getColor(getContext(), R.color.color_blue))
-                //.showSectionText()
-                .sectionTextColor(ContextCompat.getColor(getContext(), R.color.colorPrimary))
-                .sectionTextSize(18)
-                //.showThumbText()
-                .thumbTextColor(ContextCompat.getColor(getContext(), R.color.color_red))
-                .thumbTextSize(18)
-                //.signColor(ContextCompat.getColor(getContext(), R.color.color_green))
-                //.signTextSize(18)
-                //.showSectionMark()
-                .seekBySection()
-                .autoAdjustSectionMark()
-                .sectionTextPosition(SignSeekBar.TextPosition.BELOW_SECTION_MARK)
-                .build();
     }
 
     private void test2(View view) {
