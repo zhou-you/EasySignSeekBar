@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="correct offset when container on scrolling"
+        android:textSize="12sp"/>
+
+    <com.zhouyou.samlpe.signseekbar.ObservableScrollView
+        android:id="@+id/demo_4_obs_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_red_light"
+            android:orientation="vertical"
+            android:paddingBottom="24dp"
+            android:paddingTop="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:text="corrected"
+                android:textSize="12sp"/>
+
+            <com.zhouyou.view.seekbar.SignSeekBar
+                android:id="@+id/demo_4_seek_bar_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:ssb_max="10"
+                app:ssb_min="0"
+                app:ssb_progress="5"
+                app:ssb_second_track_color="@color/color_blue"
+                app:ssb_track_color="@color/colorPrimary"
+                app:ssb_track_size="4dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:text="not correct"
+                android:textSize="12sp"/>
+
+            <com.zhouyou.view.seekbar.SignSeekBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:ssb_max="10"
+                app:ssb_min="0"
+                app:ssb_progress="5"
+                app:ssb_second_track_color="@color/color_blue"
+                app:ssb_track_color="@color/colorPrimary"
+                app:ssb_track_size="4dp"/>
+
+        </LinearLayout>
+    </com.zhouyou.samlpe.signseekbar.ObservableScrollView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="listeners"
+        android:textSize="12sp"/>
+
+    <com.zhouyou.view.seekbar.SignSeekBar
+        android:id="@+id/demo_4_seek_bar_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:ssb_auto_adjust_section_mark="true"
+        app:ssb_is_float_type="true"
+        app:ssb_second_track_color="@color/color_blue"
+        app:ssb_section_count="5"
+        app:ssb_section_text_position="bottom_sides"
+        app:ssb_show_progress_in_float="true"
+        app:ssb_show_section_mark="true"
+        app:ssb_show_section_text="true"
+        app:ssb_show_thumb_text="true"
+        app:ssb_thumb_text_size="18sp"/>
+
+    <TextView
+        android:id="@+id/demo_4_progress_text_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"/>
+
+    <TextView
+        android:id="@+id/demo_4_progress_text_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"/>
+
+    <TextView
+        android:id="@+id/demo_4_progress_text_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="sign shows all time"
+        android:textSize="12sp"/>
+
+    <com.zhouyou.view.seekbar.SignSeekBar
+        android:id="@+id/demo_4_seek_bar_3"
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:layout_marginTop="8dp"
+        app:ssb_auto_adjust_section_mark="true"
+        app:ssb_second_track_color="@color/color_red"
+        app:ssb_section_count="5"
+        app:ssb_section_text_position="below_section_mark"
+        app:ssb_show_section_mark="true"
+        app:ssb_show_section_text="true"
+        app:ssb_show_thumb_text="true"
+        app:ssb_touch_to_seek="true"
+        app:ssb_track_color="@color/color_red_light"/>
+</LinearLayout>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SignSeekBar</string>
+    <string name="action_settings">Settings</string>
+    <string name="set_random_progress">set random progress</string>
+
+    <string-array name="labels">
+        <item>一档</item>
+        <item>二档</item>
+        <item>三档</item>
+        <item>四档</item>
+        <item>五档</item>
+    </string-array>
+</resources>

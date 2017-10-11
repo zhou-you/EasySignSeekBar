@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="show section text (sides, by default), show thumb text"
+        android:textSize="12sp"/>
+
+    <com.zhouyou.view.seekbar.SignSeekBar
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:layout_marginTop="8dp"
+        app:ssb_show_section_mark="true"
+        app:ssb_show_section_text="true"
+        app:ssb_show_thumb_text="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="section text position : bottom_sides, show progress in float"/>
+
+    <com.zhouyou.view.seekbar.SignSeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:ssb_sign_color="@color/color_red_light"
+        app:ssb_sign_text_color="@color/colorPrimaryDark"
+        app:ssb_max="50.0"
+        app:ssb_min="-50"
+        app:ssb_progress="0"
+        app:ssb_second_track_color="@color/color_red"
+        app:ssb_section_count="5"
+        app:ssb_section_text_position="bottom_sides"
+        app:ssb_show_progress_in_float="true"
+        app:ssb_show_section_mark="true"
+        app:ssb_show_section_text="true"
+        app:ssb_show_thumb_text="true"
+        app:ssb_track_color="@color/color_red_light"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="section text position: below_section_mark, auto adjust section mark"
+        android:textSize="12sp"/>
+
+    <com.zhouyou.view.seekbar.SignSeekBar
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:layout_marginTop="8dp"
+        app:ssb_auto_adjust_section_mark="true"
+        app:ssb_second_track_color="@color/color_red"
+        app:ssb_section_count="5"
+        app:ssb_section_text_position="below_section_mark"
+        app:ssb_show_section_mark="true"
+        app:ssb_show_section_text="true"
+        app:ssb_show_thumb_text="true"
+        app:ssb_track_color="@color/color_red_light"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="touch to seek, auto adjust"
+        android:textSize="12sp"/>
+
+    <com.zhouyou.view.seekbar.SignSeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:ssb_auto_adjust_section_mark="true"
+        app:ssb_second_track_color="@color/color_blue"
+        app:ssb_section_count="5"
+        app:ssb_section_text_position="below_section_mark"
+        app:ssb_show_section_mark="true"
+        app:ssb_show_section_text="true"
+        app:ssb_show_thumb_text="true"
+        app:ssb_thumb_text_size="18sp"
+        app:ssb_touch_to_seek="true"/>
+</LinearLayout>
