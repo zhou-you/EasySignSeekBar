@@ -1,1 +1,2 @@
-include ':app', ':signseekbar'
+include ':app'
+include ':signseekbar'
