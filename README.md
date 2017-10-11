@@ -28,7 +28,7 @@
 
 ## Demo下载
 
-[![downloads](https://github.com/zhou-you/EasySignSeekBar/blob/master/apk/signseekbar_demo.apk?raw=true)
+[![downloads](https://img.shields.io/badge/downloads-460k-blue.svg)](https://github.com/zhou-you/EasySignSeekBar/blob/master/apk/signseekbar_demo.apk?raw=true)
 
 ## 用法介绍
 ### build.gradle设置
