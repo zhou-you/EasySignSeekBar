@@ -40,6 +40,7 @@
         app:ssb_touch_to_seek="true"
         app:ssb_track_color="@color/color_gray"
         app:ssb_track_size="5dp"
+        app:ssb_anim_duration="300"
         />
 
     <TextView

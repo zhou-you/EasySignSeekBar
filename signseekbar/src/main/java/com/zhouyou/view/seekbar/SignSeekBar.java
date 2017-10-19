@@ -537,8 +537,8 @@ public class SignSeekBar extends View {
                     }
                 } else {
                     if (conditionInterval && i % mSectionTextInterval == 0) {
-                        if (isSidesLabels && i <= mBottomSidesLabels.length) {
-                            canvas.drawText(mBottomSidesLabels[i], x_, y_, mPaint);
+                        if (isSidesLabels && i/mSectionTextInterval <= mBottomSidesLabels.length) {
+                            canvas.drawText(mBottomSidesLabels[i/mSectionTextInterval], x_, y_, mPaint);
                         } else {
                             float m = mMin + mSectionValue * i;
                             canvas.drawText(isFloatType ? float2String(m) : (int) m + "", x_, y_, mPaint);
@@ -672,7 +672,6 @@ public class SignSeekBar extends View {
 
     private void createValueTextLayout() {
         String value = isShowProgressInFloat ? String.valueOf(getProgressFloat()) : String.valueOf(getProgress());
-        //String text = value != null ? formatter.format(value) : valueSegmentText;
         if (value != null && unit != null && !unit.isEmpty())
             value += String.format(" <small>%s</small>", unit);
         Spanned spanned = Html.fromHtml(value);
@@ -849,7 +848,6 @@ public class SignSeekBar extends View {
         float x = mTrackLength / mDelta * (mProgress - mMin) + mLeft;
         float y = getMeasuredHeight() / 2f;
         return (event.getX() - x) * (event.getX() - x) + (event.getY() - y) * (event.getY() - y)
-                //<= (mLeft + dp2px(8)) * (mLeft + dp2px(8));
                 <= (mLeft + mCircleR) * (mLeft + mCircleR);
     }
 
@@ -866,6 +864,7 @@ public class SignSeekBar extends View {
      */
     private void autoAdjustSection() {
         int i;
+        //计算最近节点位置，mSectionCount：节点个数，mSectionOffset：两个节点间隔距离，mThumbCenterX：滑块中心点位置
         float x = 0;
         for (i = 0; i <= mSectionCount; i++) {
             x = i * mSectionOffset + mLeft;
@@ -875,11 +874,11 @@ public class SignSeekBar extends View {
         }
 
         BigDecimal bigDecimal = BigDecimal.valueOf(mThumbCenterX);
+        //BigDecimal setScale保留1位小数，四舍五入，2.35变成2.4
         float x_ = bigDecimal.setScale(1, BigDecimal.ROUND_HALF_UP).floatValue();
         boolean onSection = x_ == x; // 就在section处，不作valueAnim，优化性能
 
         AnimatorSet animatorSet = new AnimatorSet();
-
         ValueAnimator valueAnim = null;
         if (!onSection) {
             if (mThumbCenterX - x <= mSectionOffset / 2f) {
