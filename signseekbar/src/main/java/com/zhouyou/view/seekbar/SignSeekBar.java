@@ -97,6 +97,7 @@ public class SignSeekBar extends View {
     private int mSignBorderSize; // border size
     private boolean isShowSignBorder; // show sign border
     private int mSignBorderColor;// color of border color
+    private int mUnusableColor;// color of border color
     private int mSignColor;// color of sign
     private int mSignTextSize; // text size of sign-progress
     private int mSignTextColor; // text color of sign-progress
@@ -191,6 +192,7 @@ public class SignSeekBar extends View {
         mThumbTextColor = a.getColor(R.styleable.SignSeekBar_ssb_thumb_text_color, mSecondTrackColor);
         mSignColor = a.getColor(R.styleable.SignSeekBar_ssb_sign_color, mSecondTrackColor);
         mSignBorderColor = a.getColor(R.styleable.SignSeekBar_ssb_sign_border_color, mSecondTrackColor);
+        mUnusableColor = a.getColor(R.styleable.SignSeekBar_ssb_unusable_color, Color.GRAY);
         mSignTextSize = a.getDimensionPixelSize(R.styleable.SignSeekBar_ssb_sign_text_size, SignUtils.sp2px(14));
         mSignHeight = a.getDimensionPixelSize(R.styleable.SignSeekBar_ssb_sign_height, SignUtils.dp2px(32));
         mSignWidth = a.getDimensionPixelSize(R.styleable.SignSeekBar_ssb_sign_width, SignUtils.dp2px(72));
@@ -415,7 +417,7 @@ public class SignSeekBar extends View {
         // draw sectionText SIDES or BOTTOM_SIDES
         if (isShowSectionText) {
             mPaint.setTextSize(mSectionTextSize);
-            mPaint.setColor(mSectionTextColor);
+            mPaint.setColor(isEnabled()?mSectionTextColor:mUnusableColor);
 
             if (mSectionTextPosition == TextPosition.SIDES) {
                 float y_ = yTop + mRectText.height() / 2f;
@@ -524,7 +526,7 @@ public class SignSeekBar extends View {
 
             // sectionText belows section
             if (isShowTextBelowSectionMark) {
-                mPaint.setColor(mSectionTextColor);
+                mPaint.setColor(isEnabled()?mSectionTextColor:mUnusableColor);
 
                 if (mSectionTextInterval > 1) {
                     if (conditionInterval && i % mSectionTextInterval == 0) {

@@ -52,5 +52,6 @@
         <attr name="ssb_sign_arrow_height" format="dimension|reference"/> <!--sign arrow height ,default:3dp-->
         <attr name="ssb_sign_arrow_width" format="dimension|reference"/> <!--sign arrow width, default:5dp-->
         <attr name="ssb_sign_round" format="dimension|reference"/> <!--sign round, default:3dp-->
+        <attr name="ssb_unusable_color" format="color|reference"/> <!--unusable text color, default:Color.GRAY-->
     </declare-styleable>
 </resources>
