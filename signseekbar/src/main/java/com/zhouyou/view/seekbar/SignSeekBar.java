@@ -526,14 +526,17 @@ public class SignSeekBar extends View {
 
             // sectionText belows section
             if (isShowTextBelowSectionMark) {
-                mPaint.setColor(isEnabled()?mSectionTextColor:mUnusableColor);
-
+                float m = mMin + mSectionValue * i;
+                //不可用，除了当前节点之外的其它节点用不可用颜色表示
+                
+                //Log.i("test",mProgress+"========"+m);
+                //mPaint.setColor(isEnabled()?mSectionTextColor:mUnusableColor);
+                mPaint.setColor(isEnabled()?mSectionTextColor:Math.abs(mProgress-m)<=0?mSectionTextColor:mUnusableColor);
                 if (mSectionTextInterval > 1) {
                     if (conditionInterval && i % mSectionTextInterval == 0) {
                         if (isSidesLabels) {
                             canvas.drawText(mBottomSidesLabels[i], x_, y_, mPaint);
                         } else {
-                            float m = mMin + mSectionValue * i;
                             canvas.drawText(isFloatType ? float2String(m) : (int) m + "", x_, y_, mPaint);
                         }
                     }
@@ -542,7 +545,6 @@ public class SignSeekBar extends View {
                         if (isSidesLabels && i/mSectionTextInterval <= mBottomSidesLabels.length) {
                             canvas.drawText(mBottomSidesLabels[i/mSectionTextInterval], x_, y_, mPaint);
                         } else {
-                            float m = mMin + mSectionValue * i;
                             canvas.drawText(isFloatType ? float2String(m) : (int) m + "", x_, y_, mPaint);
                         }
                     }

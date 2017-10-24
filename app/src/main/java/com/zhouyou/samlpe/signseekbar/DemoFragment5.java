@@ -37,7 +37,7 @@ public class DemoFragment5 extends Fragment {
         signSeekBar.getConfigBuilder()
                 .min(0)
                 .max(4)
-                .progress(2)
+                .progress(3)
                 .sectionCount(4)
                 //.trackColor(ContextCompat.getColor(getContext(), R.color.color_gray))
                 //.secondTrackColor(ContextCompat.getColor(getContext(), R.color.color_blue))
@@ -50,6 +50,7 @@ public class DemoFragment5 extends Fragment {
                 //.signTextSize(18)
                 .sectionTextPosition(SignSeekBar.TextPosition.BELOW_SECTION_MARK)
                 .build();
+        //signSeekBar.setEnabled(false);//设置不可以用的时候，可以设置ssb_unusable_color不可用颜色
         signSeekBar.setOnProgressChangedListener(new SignSeekBar.OnProgressChangedListener() {
             @Override
             public void onProgressChanged(SignSeekBar signSeekBar, int progress, float progressFloat,boolean fromUser) {

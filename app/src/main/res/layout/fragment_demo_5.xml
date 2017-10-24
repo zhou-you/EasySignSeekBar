@@ -41,6 +41,7 @@
         app:ssb_track_color="@color/color_gray"
         app:ssb_track_size="5dp"
         app:ssb_anim_duration="300"
+        app:ssb_unusable_color="#ff0000"
         />
 
     <TextView
