@@ -164,8 +164,9 @@ signSeekBar.setOnProgressChangedListener(new SignSeekBar.OnProgressChangedListen
     </declare-styleable>
 </resources>
 ```
-
-
+## 原理介绍
+想了解具体实现细节,请移步CSDN博客：
+[http://blog.csdn.net/zhouy478319399/article/details/78298104](http://blog.csdn.net/zhouy478319399/article/details/78298104)
 ## 支持开源
 
 乐于赞赏，感谢朋友们的支持和鼓励，让我们一起努力做一些好东西! 
