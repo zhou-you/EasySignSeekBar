@@ -122,7 +122,7 @@ public class SignSeekBar extends View {
     private boolean isTouchToSeekAnimEnd = true;
     private float mPreSecValue; // previous SectionValue
     private SignConfigBuilder mConfigBuilder; // config attributes
-    private String[] mBottomSidesLabels;
+    private String[] mSidesLabels;
     private boolean isSidesLabels;
     private float mThumbBgAlpha; //  alpha of thumb shadow
     private float mThumbRatio; // ratio of thumb shadow
@@ -223,9 +223,9 @@ public class SignSeekBar extends View {
 
         mRectText = new Rect();
         if (labelsResId > 0) {
-            mBottomSidesLabels = getResources().getStringArray(labelsResId);
+            mSidesLabels = getResources().getStringArray(labelsResId);
         }
-        isSidesLabels = mBottomSidesLabels != null && mBottomSidesLabels.length > 0;
+        isSidesLabels = mSidesLabels != null && mSidesLabels.length > 0;
 
         //init sign
         roundRectangleBounds = new RectF();
@@ -340,7 +340,7 @@ public class SignSeekBar extends View {
         }
         if (isShowSectionText && mSectionTextPosition >= TextPosition.BOTTOM_SIDES) { // 如果Section值在track之下显示，比较取较大值
             //测量节点文字的高度，如果有lable，测量真实的lable高度，如果没有表示显示的进度是数字，就用“j”代替测量高度
-            String measuretext = isSidesLabels ? mBottomSidesLabels[0] : "j";
+            String measuretext = isSidesLabels ? mSidesLabels[0] : "j";
             mPaint.setTextSize(mSectionTextSize);
             mPaint.getTextBounds(measuretext, 0, measuretext.length(), mRectText);
             height = Math.max(height, mThumbRadiusOnDragging * 2 + mRectText.height() + mTextSpace);
@@ -364,12 +364,12 @@ public class SignSeekBar extends View {
                 mPaint.getTextBounds(text, 0, text.length(), mRectText);
                 mRight -= (mRectText.width() + mTextSpace);
             } else if (mSectionTextPosition >= TextPosition.BOTTOM_SIDES) {
-                String text = isSidesLabels ? mBottomSidesLabels[0] : getMinText();
+                String text = isSidesLabels ? mSidesLabels[0] : getMinText();
                 mPaint.getTextBounds(text, 0, text.length(), mRectText);
                 float max = Math.max(mThumbRadiusOnDragging, mRectText.width() / 2f);
                 mLeft = getPaddingLeft() + max + mTextSpace;
 
-                text = isSidesLabels ? mBottomSidesLabels[mBottomSidesLabels.length - 1] : getMaxText();
+                text = isSidesLabels ? mSidesLabels[mSidesLabels.length - 1] : getMaxText();
                 mPaint.getTextBounds(text, 0, text.length(), mRectText);
                 max = Math.max(mThumbRadiusOnDragging, mRectText.width() / 2f);
                 mRight = getMeasuredWidth() - getPaddingRight() - max - mTextSpace;
@@ -422,12 +422,14 @@ public class SignSeekBar extends View {
             if (mSectionTextPosition == TextPosition.SIDES) {
                 float y_ = yTop + mRectText.height() / 2f;
 
-                String text = getMinText();
+                //String text = getMinText();
+                String text = isSidesLabels?mSidesLabels[0]:getMinText();
                 mPaint.getTextBounds(text, 0, text.length(), mRectText);
                 canvas.drawText(text, xLeft + mRectText.width() / 2f, y_, mPaint);
                 xLeft += mRectText.width() + mTextSpace;
 
-                text = getMaxText();
+                //text = getMaxText();
+                text = isSidesLabels&&mSidesLabels.length>1?mSidesLabels[mSidesLabels.length-1]:getMaxText();
                 mPaint.getTextBounds(text, 0, text.length(), mRectText);
                 canvas.drawText(text, xRight - mRectText.width() / 2f, y_, mPaint);
                 xRight -= (mRectText.width() + mTextSpace);
@@ -535,15 +537,15 @@ public class SignSeekBar extends View {
                 if (mSectionTextInterval > 1) {
                     if (conditionInterval && i % mSectionTextInterval == 0) {
                         if (isSidesLabels) {
-                            canvas.drawText(mBottomSidesLabels[i], x_, y_, mPaint);
+                            canvas.drawText(mSidesLabels[i], x_, y_, mPaint);
                         } else {
                             canvas.drawText(isFloatType ? float2String(m) : (int) m + "", x_, y_, mPaint);
                         }
                     }
                 } else {
                     if (conditionInterval && i % mSectionTextInterval == 0) {
-                        if (isSidesLabels && i/mSectionTextInterval <= mBottomSidesLabels.length) {
-                            canvas.drawText(mBottomSidesLabels[i/mSectionTextInterval], x_, y_, mPaint);
+                        if (isSidesLabels && i/mSectionTextInterval <= mSidesLabels.length) {
+                            canvas.drawText(mSidesLabels[i/mSectionTextInterval], x_, y_, mPaint);
                         } else {
                             canvas.drawText(isFloatType ? float2String(m) : (int) m + "", x_, y_, mPaint);
                         }
@@ -1015,7 +1017,7 @@ public class SignSeekBar extends View {
         mAnimDuration = builder.animDuration;
         isTouchToSeek = builder.touchToSeek;
         isSeekBySection = builder.seekBySection;
-        mBottomSidesLabels = mConfigBuilder.bottomSidesLabels;
+        mSidesLabels = mConfigBuilder.bottomSidesLabels;
         mThumbBgAlpha = mConfigBuilder.thumbBgAlpha;
         mThumbRatio = mConfigBuilder.thumbRatio;
         isShowThumbShadow = mConfigBuilder.showThumbShadow;
@@ -1076,7 +1078,7 @@ public class SignSeekBar extends View {
         mConfigBuilder.animDuration = mAnimDuration;
         mConfigBuilder.touchToSeek = isTouchToSeek;
         mConfigBuilder.seekBySection = isSeekBySection;
-        mConfigBuilder.bottomSidesLabels = mBottomSidesLabels;
+        mConfigBuilder.bottomSidesLabels = mSidesLabels;
         mConfigBuilder.thumbBgAlpha = mThumbBgAlpha;
         mConfigBuilder.thumbRatio = mThumbRatio;
         mConfigBuilder.showThumbShadow = isShowThumbShadow;
