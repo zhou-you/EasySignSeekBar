@@ -437,7 +437,8 @@ public class SignSeekBar extends View {
             } else if (mSectionTextPosition >= TextPosition.BOTTOM_SIDES) {
                 float y_ = yTop + mThumbRadiusOnDragging + mTextSpace;
 
-                String text = getMinText();
+               // String text = getMinText();
+                String text = isSidesLabels?mSidesLabels[0]:getMinText();
                 mPaint.getTextBounds(text, 0, text.length(), mRectText);
                 y_ += mRectText.height();
                 xLeft = mLeft;
@@ -445,7 +446,8 @@ public class SignSeekBar extends View {
                     canvas.drawText(text, xLeft, y_, mPaint);
                 }
 
-                text = getMaxText();
+                //text = getMaxText();
+                text = isSidesLabels&&mSidesLabels.length>1?mSidesLabels[mSidesLabels.length-1]:getMaxText();
                 mPaint.getTextBounds(text, 0, text.length(), mRectText);
                 xRight = mRight;
                 if (mSectionTextPosition == TextPosition.BOTTOM_SIDES) {
