@@ -10,4 +10,8 @@
         <item>四档</item>
         <item>五档</item>
     </string-array>
+    <string-array name="speed_labels">
+        <item>慢</item>
+        <item>快</item>
+    </string-array>
 </resources>

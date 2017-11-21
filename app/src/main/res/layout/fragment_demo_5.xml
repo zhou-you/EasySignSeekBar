@@ -25,6 +25,7 @@
         android:id="@+id/demo_5_seek_bar_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:ssb_anim_duration="300"
         app:ssb_auto_adjust_section_mark="true"
         app:ssb_second_track_color="@android:color/holo_green_light"
         app:ssb_second_track_size="6dp"
@@ -40,7 +41,6 @@
         app:ssb_touch_to_seek="true"
         app:ssb_track_color="@color/color_gray"
         app:ssb_track_size="5dp"
-        app:ssb_anim_duration="300"
         app:ssb_unusable_color="#ff0000"
         />
 
@@ -145,20 +145,26 @@
         app:ssb_sign_show_border="true"/>
 
     <com.zhouyou.view.seekbar.SignSeekBar
-        android:id="@+id/demo_5_seek_bar_7"
+        android:id="@+id/demo_5_seek_bar_8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:ssb_max="0"
-        app:ssb_min="15"
-        app:ssb_progress="10"
+        app:ssb_max="30"
+        app:ssb_min="0"
+        app:ssb_section_count="2"
+        app:ssb_section_text_position="sides"
         app:ssb_show_progress_in_float="false"
-        app:ssb_show_section_mark="false"
+        app:ssb_show_section_mark="true"
         app:ssb_show_section_text="false"
-        app:ssb_show_thumb_shadow="true"
-        app:ssb_show_thumb_text="true"
+        app:ssb_show_thumb_shadow="false"
+        app:ssb_show_thumb_text="false"
         app:ssb_thumb_radius="5dp"
         app:ssb_thumb_radius_on_dragging="7dp"
+        app:ssb_second_track_color="@color/color_red"
+        app:ssb_track_color="@color/color_red_light"
         app:ssb_track_size="5dp"
+        app:ssb_sides_labels="@array/speed_labels"
+        app:ssb_section_text_color="@color/color_60"
+        app:ssb_section_text_size="14sp"
         />
 
 </LinearLayout>
