@@ -46,6 +46,7 @@ import android.view.animation.LinearInterpolator;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 
 import static com.zhouyou.view.seekbar.SignSeekBar.TextPosition.BELOW_SECTION_MARK;
 import static com.zhouyou.view.seekbar.SignSeekBar.TextPosition.BOTTOM_SIDES;
@@ -145,7 +146,10 @@ public class SignSeekBar extends View {
     private Path trianglePath;
     private Path triangleboderPath;
     private String unit;
+    private boolean mReverse;
     private TextPaint valueTextPaint;  //滑块数值文本
+    private NumberFormat mFormat;
+    private OnValueFormatListener mValueFormatListener;
 
     public SignSeekBar(Context context) {
         this(context, null);
@@ -345,7 +349,9 @@ public class SignSeekBar extends View {
             mPaint.getTextBounds(measuretext, 0, measuretext.length(), mRectText);
             height = Math.max(height, mThumbRadiusOnDragging * 2 + mRectText.height() + mTextSpace);
         }
-        if (isShowSign){} height += mSignHeight;//加上提示框的高度
+        if (isShowSign) {
+        }
+        height += mSignHeight;//加上提示框的高度
         if (isShowSignBorder) height += mSignBorderSize;//加上提示框边框高度
         setMeasuredDimension(resolveSize(getSuggestedMinimumWidth(), widthMeasureSpec), height);
 
@@ -417,19 +423,19 @@ public class SignSeekBar extends View {
         // draw sectionText SIDES or BOTTOM_SIDES
         if (isShowSectionText) {
             mPaint.setTextSize(mSectionTextSize);
-            mPaint.setColor(isEnabled()?mSectionTextColor:mUnusableColor);
+            mPaint.setColor(isEnabled() ? mSectionTextColor : mUnusableColor);
 
             if (mSectionTextPosition == TextPosition.SIDES) {
                 float y_ = yTop + mRectText.height() / 2f;
 
                 //String text = getMinText();
-                String text = isSidesLabels?mSidesLabels[0]:getMinText();
+                String text = isSidesLabels ? mSidesLabels[0] : getMinText();
                 mPaint.getTextBounds(text, 0, text.length(), mRectText);
                 canvas.drawText(text, xLeft + mRectText.width() / 2f, y_, mPaint);
                 xLeft += mRectText.width() + mTextSpace;
 
                 //text = getMaxText();
-                text = isSidesLabels&&mSidesLabels.length>1?mSidesLabels[mSidesLabels.length-1]:getMaxText();
+                text = isSidesLabels && mSidesLabels.length > 1 ? mSidesLabels[mSidesLabels.length - 1] : getMaxText();
                 mPaint.getTextBounds(text, 0, text.length(), mRectText);
                 canvas.drawText(text, xRight - mRectText.width() / 2f, y_, mPaint);
                 xRight -= (mRectText.width() + mTextSpace);
@@ -437,8 +443,8 @@ public class SignSeekBar extends View {
             } else if (mSectionTextPosition >= TextPosition.BOTTOM_SIDES) {
                 float y_ = yTop + mThumbRadiusOnDragging + mTextSpace;
 
-               // String text = getMinText();
-                String text = isSidesLabels?mSidesLabels[0]:getMinText();
+                // String text = getMinText();
+                String text = isSidesLabels ? mSidesLabels[0] : getMinText();
                 mPaint.getTextBounds(text, 0, text.length(), mRectText);
                 y_ += mRectText.height();
                 xLeft = mLeft;
@@ -447,7 +453,7 @@ public class SignSeekBar extends View {
                 }
 
                 //text = getMaxText();
-                text = isSidesLabels&&mSidesLabels.length>1?mSidesLabels[mSidesLabels.length-1]:getMaxText();
+                text = isSidesLabels && mSidesLabels.length > 1 ? mSidesLabels[mSidesLabels.length - 1] : getMaxText();
                 mPaint.getTextBounds(text, 0, text.length(), mRectText);
                 xRight = mRight;
                 if (mSectionTextPosition == TextPosition.BOTTOM_SIDES) {
@@ -532,10 +538,10 @@ public class SignSeekBar extends View {
             if (isShowTextBelowSectionMark) {
                 float m = mMin + mSectionValue * i;
                 //不可用，除了当前节点之外的其它节点用不可用颜色表示
-                
+
                 //Log.i("test",mProgress+"========"+m);
                 //mPaint.setColor(isEnabled()?mSectionTextColor:mUnusableColor);
-                mPaint.setColor(isEnabled()?mSectionTextColor:Math.abs(mProgress-m)<=0?mSectionTextColor:mUnusableColor);
+                mPaint.setColor(isEnabled() ? mSectionTextColor : Math.abs(mProgress - m) <= 0 ? mSectionTextColor : mUnusableColor);
                 if (mSectionTextInterval > 1) {
                     if (conditionInterval && i % mSectionTextInterval == 0) {
                         if (isSidesLabels) {
@@ -546,8 +552,8 @@ public class SignSeekBar extends View {
                     }
                 } else {
                     if (conditionInterval && i % mSectionTextInterval == 0) {
-                        if (isSidesLabels && i/mSectionTextInterval <= mSidesLabels.length) {
-                            canvas.drawText(mSidesLabels[i/mSectionTextInterval], x_, y_, mPaint);
+                        if (isSidesLabels && i / mSectionTextInterval <= mSidesLabels.length) {
+                            canvas.drawText(mSidesLabels[i / mSectionTextInterval], x_, y_, mPaint);
                         } else {
                             canvas.drawText(isFloatType ? float2String(m) : (int) m + "", x_, y_, mPaint);
                         }
@@ -566,30 +572,54 @@ public class SignSeekBar extends View {
 
         if (isFloatType || (isShowProgressInFloat && mSectionTextPosition == TextPosition.BOTTOM_SIDES &&
                 mProgress != mMin && mProgress != mMax)) {
-            String value = String.valueOf(getProgressFloat());
-            if (value != null && unit != null && !unit.isEmpty())
-                value += String.format("%s", unit);
-            canvas.drawText(value, mThumbCenterX, y_, mPaint);
+            float progress = getProgressFloat();
+            String value = String.valueOf(progress);
+            if (mFormat != null) {
+                value = mFormat.format(progress);
+            }
+            if (value != null && unit != null && !unit.isEmpty()) {
+                if (!mReverse) {
+                    value += String.format("%s", unit);
+                } else {
+                    value = String.format("%s", unit) + value;
+                }
+            }
+            if (mValueFormatListener != null) value = mValueFormatListener.format(progress);
+            drawSignText(canvas, value, mThumbCenterX, y_, mPaint);
         } else {
-            String value = String.valueOf(getProgress());
-            if (value != null && unit != null && !unit.isEmpty())
-                value += String.format("%s", unit);
-            canvas.drawText(value, mThumbCenterX, y_, mPaint);
+            int progress = getProgress();
+            String value = String.valueOf(progress);
+            if (mFormat != null) {
+                value = mFormat.format(progress);
+            }
+            if (value != null && unit != null && !unit.isEmpty()) {
+                if (!mReverse) {
+                    value += String.format("%s", unit);
+                } else {
+                    value = String.format("%s", unit) + value;
+                }
+            }
+            if (mValueFormatListener != null) value = mValueFormatListener.format(progress);
+            drawSignText(canvas, value, mThumbCenterX, y_, mPaint);
         }
+    }
+
+    public void drawSignText(Canvas canvas, String text, float x, float y, Paint paint) {
+        canvas.drawText(text, x, y, paint);
     }
 
     //draw value sign
     private void drawValueSign(Canvas canvas, int valueSignSpaceHeight, int valueSignCenter) {
         valueSignBounds.set(valueSignCenter - mSignWidth / 2, getPaddingTop(), valueSignCenter + mSignWidth / 2, mSignHeight - mSignArrowHeight + getPaddingTop());
 
-        int bordersize = isShowSignBorder?mSignBorderSize:0;
+        int bordersize = isShowSignBorder ? mSignBorderSize : 0;
         // Move if not fit horizontal
         if (valueSignBounds.left < getPaddingLeft()) {
-            int difference = -valueSignBounds.left + getPaddingLeft()+bordersize;
+            int difference = -valueSignBounds.left + getPaddingLeft() + bordersize;
             roundRectangleBounds.set(valueSignBounds.left + difference, valueSignBounds.top, valueSignBounds.right +
                     difference, valueSignBounds.bottom);
         } else if (valueSignBounds.right > getMeasuredWidth() - getPaddingRight()) {
-            int difference = valueSignBounds.right - getMeasuredWidth() + getPaddingRight()+bordersize;
+            int difference = valueSignBounds.right - getMeasuredWidth() + getPaddingRight() + bordersize;
             roundRectangleBounds.set(valueSignBounds.left - difference, valueSignBounds.top, valueSignBounds.right -
                     difference, valueSignBounds.bottom);
         } else {
@@ -606,10 +636,10 @@ public class SignSeekBar extends View {
         // Draw arrow
         barRoundingRadius = isThumbOnDragging ? mThumbRadiusOnDragging : mThumbRadius;
         int difference = 0;
-        if (valueSignCenter - mSignArrowWidth / 2 < barRoundingRadius + getPaddingLeft()+mTextSpace+bordersize) {
-            difference = barRoundingRadius - valueSignCenter + getPaddingLeft()+bordersize+mTextSpace;
-        } else if (valueSignCenter + mSignArrowWidth / 2 > getMeasuredWidth() - barRoundingRadius - getPaddingRight()-mTextSpace-bordersize) {
-            difference = (getMeasuredWidth() - barRoundingRadius) - valueSignCenter - getPaddingRight()-bordersize-mTextSpace;
+        if (valueSignCenter - mSignArrowWidth / 2 < barRoundingRadius + getPaddingLeft() + mTextSpace + bordersize) {
+            difference = barRoundingRadius - valueSignCenter + getPaddingLeft() + bordersize + mTextSpace;
+        } else if (valueSignCenter + mSignArrowWidth / 2 > getMeasuredWidth() - barRoundingRadius - getPaddingRight() - mTextSpace - bordersize) {
+            difference = (getMeasuredWidth() - barRoundingRadius) - valueSignCenter - getPaddingRight() - bordersize - mTextSpace;
         }
 
         point1.set(valueSignCenter - mSignArrowWidth / 2 + difference, valueSignSpaceHeight - mSignArrowHeight + getPaddingTop());
@@ -679,9 +709,32 @@ public class SignSeekBar extends View {
     }
 
     private void createValueTextLayout() {
-        String value = isShowProgressInFloat ? String.valueOf(getProgressFloat()) : String.valueOf(getProgress());
-        if (value != null && unit != null && !unit.isEmpty())
-            value += String.format(" <small>%s</small>", unit);
+        String value = "";
+        if (isShowProgressInFloat) {
+            float progress = getProgressFloat();
+            value = String.valueOf(progress);
+            if (mFormat != null) {
+                value = mFormat.format(progress);
+            }
+        } else {
+            int progress = getProgress();
+            value = String.valueOf(progress);
+            if (mFormat != null) {
+                value = mFormat.format(progress);
+            }
+        }
+        if (mValueFormatListener == null) {
+            if (value != null && unit != null && !unit.isEmpty()) {
+                if (!mReverse) {
+                    value += String.format(" <small>%s</small> ", unit);
+                    //value += String.format("%s", unit);
+                } else {
+                    value = String.format(" %s ", unit) + value;
+                }
+            }
+        } else {
+            value = mValueFormatListener.format(Float.parseFloat(value));
+        }
         Spanned spanned = Html.fromHtml(value);
         valueTextLayout = new StaticLayout(spanned, valueTextPaint, mSignWidth, Layout.Alignment.ALIGN_CENTER, 1, 0, false);
     }
@@ -734,7 +787,7 @@ public class SignSeekBar extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if(!isEnabled())return false;
+        if (!isEnabled()) return false;
         switch (event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
                 getParent().requestDisallowInterceptTouchEvent(true);
@@ -774,7 +827,7 @@ public class SignSeekBar extends View {
                     invalidate();
 
                     if (mProgressListener != null) {
-                        mProgressListener.onProgressChanged(this, getProgress(), getProgressFloat(),true);
+                        mProgressListener.onProgressChanged(this, getProgress(), getProgressFloat(), true);
                     }
                 }
 
@@ -807,7 +860,7 @@ public class SignSeekBar extends View {
 
                                     if (mProgressListener != null) {
                                         mProgressListener.onProgressChanged(SignSeekBar.this,
-                                                getProgress(), getProgressFloat(),true);
+                                                getProgress(), getProgressFloat(), true);
                                     }
                                 }
 
@@ -903,7 +956,7 @@ public class SignSeekBar extends View {
                     invalidate();
 
                     if (mProgressListener != null) {
-                        mProgressListener.onProgressChanged(SignSeekBar.this, getProgress(), getProgressFloat(),true);
+                        mProgressListener.onProgressChanged(SignSeekBar.this, getProgress(), getProgressFloat(), true);
                     }
                 }
             });
@@ -920,7 +973,7 @@ public class SignSeekBar extends View {
                 invalidate();
 
                 if (mProgressListener != null) {
-                    mProgressListener.getProgressOnFinally(SignSeekBar.this, getProgress(), getProgressFloat(),true);
+                    mProgressListener.getProgressOnFinally(SignSeekBar.this, getProgress(), getProgressFloat(), true);
                 }
             }
 
@@ -954,8 +1007,8 @@ public class SignSeekBar extends View {
     public void setProgress(float progress) {
         mProgress = progress;
         if (mProgressListener != null) {
-            mProgressListener.onProgressChanged(this, getProgress(), getProgressFloat(),false);
-            mProgressListener.getProgressOnFinally(this, getProgress(), getProgressFloat(),false);
+            mProgressListener.onProgressChanged(this, getProgress(), getProgressFloat(), false);
+            mProgressListener.getProgressOnFinally(this, getProgress(), getProgressFloat(), false);
         }
         postInvalidate();
     }
@@ -992,6 +1045,10 @@ public class SignSeekBar extends View {
         mProgressListener = onProgressChangedListener;
     }
 
+    public void setValueFormatListener(OnValueFormatListener valueFormatListener) {
+        mValueFormatListener = valueFormatListener;
+    }
+
     void config(SignConfigBuilder builder) {
         mMin = builder.min;
         mMax = builder.max;
@@ -1024,6 +1081,8 @@ public class SignSeekBar extends View {
         mThumbRatio = mConfigBuilder.thumbRatio;
         isShowThumbShadow = mConfigBuilder.showThumbShadow;
         unit = mConfigBuilder.unit;
+        mReverse = mConfigBuilder.reverse;
+        mFormat = mConfigBuilder.format;
         mSignColor = builder.signColor;
         mSignTextSize = builder.signTextSize;
         mSignTextColor = builder.signTextColor;
@@ -1041,8 +1100,8 @@ public class SignSeekBar extends View {
         initConfigByPriority();
         createValueTextLayout();
         if (mProgressListener != null) {
-            mProgressListener.onProgressChanged(this, getProgress(), getProgressFloat(),false);
-            mProgressListener.getProgressOnFinally(this, getProgress(), getProgressFloat(),false);
+            mProgressListener.onProgressChanged(this, getProgress(), getProgressFloat(), false);
+            mProgressListener.getProgressOnFinally(this, getProgress(), getProgressFloat(), false);
         }
 
         mConfigBuilder = null;
@@ -1085,6 +1144,8 @@ public class SignSeekBar extends View {
         mConfigBuilder.thumbRatio = mThumbRatio;
         mConfigBuilder.showThumbShadow = isShowThumbShadow;
         mConfigBuilder.unit = unit;
+        mConfigBuilder.reverse = mReverse;
+        mConfigBuilder.format = mFormat;
         mConfigBuilder.signColor = mSignColor;
         mConfigBuilder.signTextSize = mSignTextSize;
         mConfigBuilder.signTextColor = mSignTextColor;
@@ -1136,10 +1197,14 @@ public class SignSeekBar extends View {
      */
     public interface OnProgressChangedListener {
 
-        void onProgressChanged(SignSeekBar signSeekBar, int progress, float progressFloat,boolean fromUser);
+        void onProgressChanged(SignSeekBar signSeekBar, int progress, float progressFloat, boolean fromUser);
 
         void getProgressOnActionUp(SignSeekBar signSeekBar, int progress, float progressFloat);
 
-        void getProgressOnFinally(SignSeekBar signSeekBar, int progress, float progressFloat,boolean fromUser);
+        void getProgressOnFinally(SignSeekBar signSeekBar, int progress, float progressFloat, boolean fromUser);
+    }
+
+    public interface OnValueFormatListener {
+        String format(float progress);
     }
 }

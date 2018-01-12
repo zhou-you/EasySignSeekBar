@@ -19,6 +19,8 @@ package com.zhouyou.view.seekbar;
 import android.support.annotation.ColorInt;
 import android.support.annotation.IntRange;
 
+import java.text.NumberFormat;
+
 /**
  * <p>描述：config SignSeekBar's attributes</p>
  * 作者： zhouyou<br>
@@ -63,8 +65,8 @@ public class SignConfigBuilder {
     boolean showThumbShadow;
     SignSeekBar mSignSeekBar;
     String unit;
-    int signArrowHeight;  
-    int signArrowWidth; 
+    int signArrowHeight;
+    int signArrowWidth;
     int signRound;
     int signHeight; //sign Height
     int signWidth; //sign width
@@ -72,6 +74,8 @@ public class SignConfigBuilder {
     boolean showSignBorder; // show sign border
     boolean signArrowAutofloat;
     int signBorderColor;// color of border color
+    NumberFormat format;
+    boolean reverse;
 
     SignConfigBuilder(SignSeekBar signSeekBar) {
         mSignSeekBar = signSeekBar;
@@ -216,7 +220,6 @@ public class SignConfigBuilder {
         return this;
     }
 
-  
 
     public SignConfigBuilder bottomSidesLabels(String[] bottomSidesLabels) {
         this.bottomSidesLabels = bottomSidesLabels;
@@ -483,5 +486,23 @@ public class SignConfigBuilder {
 
     public boolean isSignArrowAutofloat() {
         return signArrowAutofloat;
+    }
+
+    public SignConfigBuilder format(NumberFormat format) {
+        this.format = format;
+        return this;
+    }
+
+    public NumberFormat getFormat() {
+        return format;
+    }
+
+    public boolean isReverse() {
+        return reverse;
+    }
+
+    public SignConfigBuilder reverse() {
+        this.reverse = true;
+        return this;
     }
 }

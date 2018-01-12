@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    >
+
+    <com.zhouyou.view.seekbar.SignSeekBar
+        android:id="@+id/demo_6_seek_bar_1"
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:layout_marginTop="10dp"
+        app:ssb_max="0"
+        app:ssb_min="15"
+        app:ssb_progress="5"
+        app:ssb_section_text_position="bottom_sides"
+        app:ssb_show_progress_in_float="false"
+        app:ssb_show_section_mark="false"
+        app:ssb_show_section_text="true"
+        app:ssb_show_sign="true"
+        app:ssb_show_thumb_text="false"
+        app:ssb_sign_arrow_height="5dp"
+        app:ssb_sign_arrow_width="10dp"/>
+
+    <com.zhouyou.view.seekbar.SignSeekBar
+        android:id="@+id/demo_6_seek_bar_2"
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:layout_marginTop="10dp"
+        app:ssb_max="0"
+        app:ssb_min="10000"
+        app:ssb_progress="6000"
+        app:ssb_section_text_position="bottom_sides"
+        app:ssb_show_progress_in_float="false"
+        app:ssb_show_section_mark="false"
+        app:ssb_show_section_text="true"
+        app:ssb_show_sign="true"
+        app:ssb_show_thumb_text="false"
+        app:ssb_sign_arrow_height="5dp"
+        app:ssb_sign_arrow_width="10dp"/>
+
+    <com.zhouyou.view.seekbar.SignSeekBar
+        android:id="@+id/demo_6_seek_bar_3"
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:layout_marginTop="10dp"
+        app:ssb_max="0"
+        app:ssb_min="10000"
+        app:ssb_progress="6000"
+        app:ssb_section_text_position="bottom_sides"
+        app:ssb_show_progress_in_float="false"
+        app:ssb_show_section_mark="false"
+        app:ssb_show_section_text="true"
+        app:ssb_show_sign="true"
+        app:ssb_show_thumb_text="false"
+        app:ssb_sign_arrow_height="5dp"
+        app:ssb_sign_arrow_width="10dp"/>
+
+    <Button
+        android:id="@+id/updateBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="测试"/>
+</LinearLayout>
