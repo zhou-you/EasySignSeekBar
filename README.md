@@ -10,6 +10,7 @@
 - 支持节点个数、文字大小、颜色设置；
 - 支持指示牌宽高、颜色、圆角半径、三角arrow指示、border边框、跟随thumb移动等；
 - 支持设置拖动进度监听回掉；
+- 支持格式化进度数字，完全自定义进度样式
 - ......
 
 ## 关于我
@@ -24,7 +25,7 @@
 ![](https://github.com/zhou-you/EasySignSeekBar/blob/master/screenshot/3.gif?raw=true)  ![](https://github.com/zhou-you/EasySignSeekBar/blob/master/screenshot/4.gif?raw=true)
 
 ## 版本说明
-[![release](https://img.shields.io/badge/release-v1.0.4-orange.svg)](https://github.com/zhou-you/EasySignSeekBar/blob/master/update.md)
+[![release](https://img.shields.io/badge/release-v1.0.5-orange.svg)](https://github.com/zhou-you/EasySignSeekBar/blob/master/update.md)
 
 ## Demo下载
 
@@ -35,7 +36,7 @@
 
 ```
 dependencies {
- compile 'com.zhouyou:signseekbar:1.0.4'
+ compile 'com.zhouyou:signseekbar:1.0.5'
 }
 
 ```
