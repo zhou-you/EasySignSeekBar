@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.main_tab_btn_4).setOnClickListener(this);
         findViewById(R.id.main_tab_btn_5).setOnClickListener(this);
         findViewById(R.id.main_tab_btn_6).setOnClickListener(this);
+        findViewById(R.id.main_tab_btn_7).setOnClickListener(this);
 
         if (savedInstanceState == null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -58,6 +59,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.main_tab_btn_6:
                 switchContent("demo6");
                 break;
+            case R.id.main_tab_btn_7:
+                switchContent("demo7");
+                break;
         }
     }
 
@@ -81,8 +85,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 to = DemoFragment4.newInstance();
             } else if ("demo5".equals(toTag)) {
                 to = DemoFragment5.newInstance();
-            } else {
+            } else if ("demo6".equals(toTag))  {
                 to = DemoFragment6.newInstance();
+            }else{
+                to = DemoFragment7.newInstance();
             }
         }
         if (!to.isAdded()) {
