@@ -172,13 +172,4 @@ signSeekBar.setOnProgressChangedListener(new SignSeekBar.OnProgressChangedListen
 ## 感谢
 在此感谢[BubbleSeekBar](https://github.com/woxingxiao/BubbleSeekBar)作者提供的开源库，对于本库的完成提供了很大的帮助。
 
-## 支持开源
-
-乐于赞赏，感谢朋友们的支持和鼓励，让我们一起努力做一些好东西! 
-
-可以使用「微信」「支付宝」客户端赞赏：
-
-
-
-![支付](http://img.blog.csdn.net/20170712204443185)
 
