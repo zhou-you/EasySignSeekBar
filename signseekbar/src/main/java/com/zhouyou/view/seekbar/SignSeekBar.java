@@ -472,7 +472,8 @@ public class SignSeekBar extends View {
 
         boolean isShowTextBelowSectionMark = isShowSectionText && mSectionTextPosition ==
                 TextPosition.BELOW_SECTION_MARK;
-        boolean conditionInterval = mSectionCount % 2 == 0;
+        //boolean conditionInterval = mSectionCount % 2 == 0;
+        boolean conditionInterval = true;
 
         // draw sectionMark & sectionText BELOW_SECTION_MARK
         if (isShowTextBelowSectionMark || isShowSectionMark) {
