@@ -25,7 +25,7 @@
 ![](https://github.com/zhou-you/EasySignSeekBar/blob/master/screenshot/3.gif?raw=true)  ![](https://github.com/zhou-you/EasySignSeekBar/blob/master/screenshot/4.gif?raw=true)
 
 ## 版本说明
-[![release](https://img.shields.io/badge/release-v1.0.5-orange.svg)](https://github.com/zhou-you/EasySignSeekBar/blob/master/update.md)
+[![release](https://img.shields.io/badge/release-v1.0.6-orange.svg)](https://github.com/zhou-you/EasySignSeekBar/blob/master/update.md)
 
 ## Demo下载
 
@@ -36,7 +36,7 @@
 
 ```
 dependencies {
- compile 'com.zhouyou:signseekbar:1.0.5'
+ compile 'com.zhouyou:signseekbar:1.0.6'
 }
 
 ```
