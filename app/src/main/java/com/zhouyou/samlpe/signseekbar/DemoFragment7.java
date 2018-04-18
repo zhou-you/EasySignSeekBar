@@ -23,6 +23,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.zhouyou.view.seekbar.SignSeekBar;
+
 public class DemoFragment7 extends Fragment {
 
     public static DemoFragment7 newInstance() {
@@ -33,6 +35,11 @@ public class DemoFragment7 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_demo_7, container, false);
+        test2(view);
         return view;
+    }
+
+    private void test2(View view) {
+        SignSeekBar signSeekBar = (SignSeekBar) view.findViewById(R.id.demo_7_seek_bar_2);
     }
 }

@@ -8,21 +8,42 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     >
+
     <com.zhouyou.view.seekbar.SignSeekBar
-        android:id="@+id/demo_5_seek_bar_4"
+        android:id="@+id/demo_7_seek_bar_1"
         android:layout_width="match_parent"
         android:layout_height="16dp"
+        app:ssb_is_float_type="false"
         app:ssb_max="14"
         app:ssb_min="7"
         app:ssb_progress="5"
+        app:ssb_section_count="7"
         app:ssb_section_text_position="bottom_sides"
         app:ssb_show_progress_in_float="false"
-        app:ssb_is_float_type="false"
         app:ssb_show_section_mark="false"
         app:ssb_show_section_text="true"
-        app:ssb_section_count="7"
         app:ssb_show_sign="true"
         app:ssb_show_thumb_text="false"
         app:ssb_sign_arrow_height="5dp"
         app:ssb_sign_arrow_width="10dp"/>
+
+    <com.zhouyou.view.seekbar.SignSeekBar
+        android:id="@+id/demo_7_seek_bar_2"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        app:ssb_is_float_type="false"
+        app:ssb_max="4"
+        app:ssb_min="0"
+        app:ssb_progress="3"
+        app:ssb_section_count="4"
+        app:ssb_section_text_position="below_section_mark"
+        app:ssb_show_progress_in_float="false"
+        app:ssb_show_section_mark="false"
+        app:ssb_show_section_text="false"
+        app:ssb_show_sign="false"
+        app:ssb_show_thumb_text="false"
+        app:ssb_sides_labels="@array/price_labels"
+        app:ssb_sign_arrow_height="5dp"
+        app:ssb_sign_arrow_width="10dp"
+        />
 </LinearLayout>
