@@ -244,6 +244,12 @@ public class SignSeekBar extends View {
 
         triangleboderPath = new Path();
 
+        init();
+
+        initConfigByPriority();
+    }
+
+    private void init() {
         signPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         signPaint.setStyle(Paint.Style.FILL);
         signPaint.setAntiAlias(true);
@@ -259,8 +265,6 @@ public class SignSeekBar extends View {
         valueTextPaint.setStyle(Paint.Style.FILL);
         valueTextPaint.setTextSize(mSignTextSize);
         valueTextPaint.setColor(mSignTextColor);
-
-        initConfigByPriority();
     }
 
     private void initConfigByPriority() {
@@ -1098,6 +1102,7 @@ public class SignSeekBar extends View {
         mSignBorderColor = builder.signBorderColor;
         isSignArrowAutofloat = builder.signArrowAutofloat;
 
+        init();
         initConfigByPriority();
         createValueTextLayout();
         if (mProgressListener != null) {
