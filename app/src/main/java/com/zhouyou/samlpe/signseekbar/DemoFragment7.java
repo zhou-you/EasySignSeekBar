@@ -16,6 +16,7 @@
 
 package com.zhouyou.samlpe.signseekbar;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -35,10 +36,15 @@ public class DemoFragment7 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_demo_7, container, false);
+        test1(view);
         test2(view);
         return view;
     }
 
+    private void test1(View view) {
+        SignSeekBar signSeekBar = (SignSeekBar) view.findViewById(R.id.demo_7_seek_bar_1);
+        signSeekBar.getConfigBuilder().signColor(Color.parseColor("#ff0000")).build();
+    }
     private void test2(View view) {
         SignSeekBar signSeekBar = (SignSeekBar) view.findViewById(R.id.demo_7_seek_bar_2);
     }
