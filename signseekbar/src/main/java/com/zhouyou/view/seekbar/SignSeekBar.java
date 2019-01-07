@@ -1082,6 +1082,7 @@ public class SignSeekBar extends View {
         isTouchToSeek = builder.touchToSeek;
         isSeekBySection = builder.seekBySection;
         mSidesLabels = mConfigBuilder.bottomSidesLabels;
+        isSidesLabels = mSidesLabels != null && mSidesLabels.length > 0;
         mThumbBgAlpha = mConfigBuilder.thumbBgAlpha;
         mThumbRatio = mConfigBuilder.thumbRatio;
         isShowThumbShadow = mConfigBuilder.showThumbShadow;
